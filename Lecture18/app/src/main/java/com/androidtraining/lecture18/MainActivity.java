@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IConnectivityListener {
 
+    private TextView tvConnectivityStatus;
     private ExampleReceiver exampleReceiver;
 
     @Override
@@ -17,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        exampleReceiver = new ExampleReceiver();
+        tvConnectivityStatus = findViewById(R.id.tvConnectivityStatus);
+
+        exampleReceiver = new ExampleReceiver(this);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_POWER_CONNECTED);
@@ -29,9 +33,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onConnectivityChanged(boolean isNetworkAvailable) {
+        tvConnectivityStatus.setText(isNetworkAvailable ? "Network available" : "Waiting for network");
+        tvConnectivityStatus.setTextColor(isNetworkAvailable ? getResources().getColor(android.R.color.holo_green_dark) : getResources().getColor(android.R.color.holo_orange_dark));
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
 
         unregisterReceiver(exampleReceiver);
     }
+
 }

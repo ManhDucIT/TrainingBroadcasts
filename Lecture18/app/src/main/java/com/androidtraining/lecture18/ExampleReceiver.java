@@ -8,6 +8,12 @@ import android.widget.Toast;
 
 public class ExampleReceiver extends BroadcastReceiver {
 
+    private IConnectivityListener connectivityListener;
+
+    public ExampleReceiver(IConnectivityListener connectivityListener){
+        this.connectivityListener = connectivityListener;
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         // Intent is the object sent by system or other apps
@@ -29,6 +35,10 @@ public class ExampleReceiver extends BroadcastReceiver {
             }
 
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+
+            if(connectivityListener != null){
+                connectivityListener.onConnectivityChanged(!isNoConnectivity);
+            }
         }
         else if(intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)){
             int state = intent.getIntExtra("state", -1);
