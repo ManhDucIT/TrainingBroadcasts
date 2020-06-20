@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".ExampleBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.androidtraining.lecture18.broadcastsender.CUSTOM_ACTION_1"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
