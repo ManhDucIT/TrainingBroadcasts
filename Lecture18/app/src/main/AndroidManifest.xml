@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".ExampleBroadcastReceiver">
+        <!-- If intent-filter is not defined, then android:exported="true" must be set
+        Otherwise, this Receiver will not be able to receive external broadcast -->
+        <receiver android:name=".BR2">
             <intent-filter>
                 <action android:name="com.androidtraining.lecture18.broadcastsender.CUSTOM_ACTION_1"/>
             </intent-filter>

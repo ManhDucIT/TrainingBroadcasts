@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ExampleBroadcastReceiver2 exampleBroadcastReceiver2;
+    private BR1 br1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,18 +15,18 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        exampleBroadcastReceiver2 = new ExampleBroadcastReceiver2();
+        br1 = new BR1();
 
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.androidtraining.lecture18.broadcastsender.CUSTOM_ACTION_1");
 
-        registerReceiver(exampleBroadcastReceiver2, filter);
+        registerReceiver(br1, filter);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        unregisterReceiver(exampleBroadcastReceiver2);
+        unregisterReceiver(br1);
     }
 }

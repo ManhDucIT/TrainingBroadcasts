@@ -41,24 +41,32 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Send explicit broadcast to external apps and already know target
+     * NOTE: Only static (manifest registered) receivers can be able to
+     * receive broadcast with this sending way
+     * (Refer branch: explicit_broadcast_external_all to send explicit broadcast to all receiver types)
      */
     private void sendBroadcast1(){
         // Explicit broadcast - External
         Intent intent = new Intent();
 
         // Method 1:
-        ComponentName componentName = new ComponentName("com.androidtraining.lecture18", "com.androidtraining.lecture18.ExampleBroadcastReceiver");
+        ComponentName componentName = new ComponentName("com.androidtraining.lecture18", "com.androidtraining.lecture18.BR2");
         intent.setComponent(componentName);
 
         // Method 2:
-//        intent.setClassName("com.androidtraining.lecture18", "com.androidtraining.lecture18.ExampleBroadcastReceiver");
+//        intent.setClassName("com.androidtraining.lecture18", "com.androidtraining.lecture18.BR2");
 
+        // Set specific action (optional)
         intent.setAction(CUSTOM_ACTION_1);
+
+        // Send broadcast
         sendBroadcast(intent);
     }
 
     /**
-     * Send explicit broadcast to external apps but don't know target
+     * Send explicit broadcast to external apps but no need to know exact target
+     *
+     * NOTE: An Explicit broadcast but it works like implicit one
      */
     private void sendBroadcast2(){
         // Explicit broadcast - External with Auto-query (only manifest receivers will receive the broadcast)
