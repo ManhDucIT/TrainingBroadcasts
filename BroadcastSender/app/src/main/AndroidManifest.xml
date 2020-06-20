@@ -17,9 +17,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".SenderBroadcastReceiver">
+        <receiver android:name=".BR2">
             <intent-filter>
-                <action android:name="com.androidtraining.lecture18.broadcastsender.CUSTOM_ACTION_1"/>
+                <action android:name="com.androidtraining.lecture18.broadcastsender.CUSTOM_ACTION_2"/>
             </intent-filter>
         </receiver>
     </application>
