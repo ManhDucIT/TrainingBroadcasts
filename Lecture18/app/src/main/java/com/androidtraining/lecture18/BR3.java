@@ -11,22 +11,31 @@ public class BR3 extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-        Log.i("CUSTOM BROADCAST", "BR3");
+        String action = intent.getAction();
 
-        int resultCode = getResultCode();
-        String resultData = getResultData();
-        Bundle resultExtras = getResultExtras(true);
-        String stringExtra = resultExtras.getString("stringExtra");
-        resultCode++;
-        stringExtra += "->OR3";
-        String toastText = "OR3\n" +
-                "resultCode: " + resultCode + "\n" +
-                "resultData: " + resultData + "\n" +
-                "stringExtra: " + stringExtra;
-        Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
-        resultData = "OR3";
-        resultExtras.putString("stringExtra", stringExtra);
-        setResult(resultCode, resultData, resultExtras);
+        if("com.androidtraining.lecture18.broadcastsender.CUSTOM_ACTION_1".equals(action)){
+            Log.i("CUSTOM BROADCAST", "BR3");
+
+            int resultCode = getResultCode();
+            String resultData = getResultData();
+            Bundle resultExtras = getResultExtras(true);
+            String stringExtra = resultExtras.getString("stringExtra");
+
+            resultCode++;
+            stringExtra += "->OR3";
+
+            String description = "OR3\n" +
+                    "resultCode: " + resultCode + "\n" +
+                    "resultData: " + resultData + "\n" +
+                    "stringExtra: " + stringExtra;
+
+            Log.i("CUSTOM BROADCAST", description);
+
+            resultData = "OR3";
+            resultExtras.putString("stringExtra", stringExtra);
+
+            setResult(resultCode, resultData, resultExtras);
+        }
     }
 
 }
